@@ -3,7 +3,7 @@ import React from "react";
 function Header (){
     return(
         <header>
-        <h1>RESTy</h1>
+        <h1 data-testid="Test">RESTy</h1>
          <ui>Home</ui>
          <ui>History</ui>
          <ui>Help</ui>
