@@ -1,5 +1,8 @@
 ## RESTy
 
+## Deployed >>
+[RESTy](https://62f4be457f2261123a964ff9--amazing-vacherin-e5aa40.netlify.app/)
+
 ## UML Diagram
 
 ![UML](./UML.png)
@@ -21,3 +24,5 @@
 
 ## Test RESTy>>>>
 ![test](./testResty.png)
+
+
