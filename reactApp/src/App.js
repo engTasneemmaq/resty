@@ -65,7 +65,7 @@ function App () {
       //   },
       // };
       if (requestParams) {
-        setUser({user,data:data,requestParams:requestParams});
+        setUser({...user,data:data,requestParams:requestParams});
     }
     }else {
       const data = {
