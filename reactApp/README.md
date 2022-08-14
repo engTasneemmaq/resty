@@ -1,7 +1,7 @@
 ## RESTy
 
 ## Deployed >>
-[RESTy](https://62f4be457f2261123a964ff9--amazing-vacherin-e5aa40.netlify.app/)
+[RESTy](https://62f8ca1c86c9c25974291544--exquisite-faloodeh-b3d1d6.netlify.app/)
 
 ## UML Diagram
 
