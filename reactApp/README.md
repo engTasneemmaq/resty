@@ -1,7 +1,11 @@
 ## RESTy
 
-## Deployed >>
-[RESTy](https://62fa1464928db224368fca41--fancy-blancmange-79b238.netlify.app/)
+## Deployed Github Pages >>
+## [RESTY ](https://engtasneemmaq.github.io/resty/)
+
+## Deployed Netlify >>>
+[RESTy](https://62fab59eba055314e2d1bb6b--chic-sherbet-e600ea.netlify.app/)
+
 
 ## UML Diagram
 
