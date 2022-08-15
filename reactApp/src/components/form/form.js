@@ -5,36 +5,60 @@ import './form.scss';
 function Form (props){
   const [ apiUrl, setApiUrl] = useState('');
   const [ apiMethod, setApiMethod] = useState('GET');
-
-let formData = {
-  method : apiMethod ,
-  url : apiUrl,
-}
+  const [body, setBody]= useState('');
 
   const handleSubmit = e => {
+    const header = {
+      'Content-Type': 'application/json',
+    };
             e.preventDefault();
-            props.handleApiCall(formData);
-            console.log(formData);
-
+           const formData = {
+            method: apiMethod,
+            url: apiUrl,
+            Headers: "Headers" + JSON.stringify(header, null, 2),
+           };
+           const bodyData={
+            body: body,
+           };
+           props.handleApiCall(formData,bodyData);
           }
 
-          return(
-                        <form onSubmit={handleSubmit}>
-                        <label data-testid="testLabel" >
-                          <span data-testid ="testUrl">URL: </span>
-                          <input onChange = {(e)=> {setApiUrl (e.target.value)}}name='url' type='text' />
-                          <input onChange = {(e)=> {setApiMethod (e.target.value)}}name='method' type='text' />
+          const handleClick = e =>{
+            e.preventDefault();
+            setApiMethod(e.target.value);
+          }
 
-                          <button data-testid="go" type="submit">GO!</button>
-                        </label>
-                        <label className="methods">
-                          <span data-testid="getTest" id="get">GET</span>
-                          <span id="post">POST</span>
-                          <span id="put">PUT</span>
-                          <span id="delete">DELETE</span>
-                        </label>
-                      </form>
-                    
+          const handleUrl = e =>{
+            e.preventDefault();
+            setApiUrl(e.target.value);
+          }
+
+          const handleBody = e =>{
+           e.preventDefault();
+           const formattedBody = JSON.stringify(JSON.parse(e.target.value), null, 4);
+           setBody(formattedBody);
+          }
+
+
+          return(
+            <>
+            <form onSubmit={handleSubmit}>
+              <label className='label-input'>
+                <span>URL: </span>
+                <input name='url' type='text' className='input' placeholder='Inter a URL' data-testid='input' onChange={handleUrl} />
+                <button type="submit" className='btn' data-testid='submit'>GO!</button>
+              </label>
+              <label className="methods">
+                <div className='btns'>
+                  <button id="get" data-testid='get' onClick={handleClick} value='GET'>GET</button>
+                  <button id="post" data-testid='post' onClick={handleClick} value='POST'>POST</button>
+                  <button id="put" data-testid='put' onClick={handleClick} value='PUT'>PUT</button>
+                  <button id="delete" onClick={handleClick} value='DELETE'>DELETE</button>
+                </div>
+              </label>
+              {apiMethod === 'POST' || apiMethod === 'PUT' ? <textarea className='text' onChange={handleBody} /> : null}
+            </form>
+          </>
                     );          
 }
 
