@@ -18,7 +18,7 @@ console.log(API.url);
   },[APIurl])
   // let StatusName ="Show methods"
  const changeShow =()=>{
-if(show==true){
+if(show===true){
   setStatusName("Click Me !! Show methods")
   setShow(false)
 }else{
