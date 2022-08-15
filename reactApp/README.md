@@ -26,3 +26,9 @@
 ![test](./testResty.png)
 
 
+## Test RESTy 2
+![result](./result-resty.png)
+
+![resty](./result2-rest.png)
+
+

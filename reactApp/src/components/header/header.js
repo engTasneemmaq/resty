@@ -2,7 +2,12 @@ import React from "react";
 
 function Header (){
     return(
-        <header data-testid='header'>RESTy</header>
+        <header>
+        <h1 data-testid="Test">RESTy</h1>
+         <ui>Home</ui>
+         <ui>History</ui>
+         <ui>Help</ui>
+         </header>
      );
 }
 
