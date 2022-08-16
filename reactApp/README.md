@@ -9,30 +9,34 @@
 
 ## UML Diagram
 
-![UML](./UML.png)
+![UML](./assets/UML.png)
 
 
 
 ## Result >>>
 
-![result](./result.png)
+![result](./assets/result.png)
 
-![Result 2](./result2.png)
+![Result 2](./assets/result2.png)
 
 
 
 
 ## Result UseState>>>
-![result](./state.png)
+![result](./assets/state.png)
 
 
 ## Test RESTy>>>>
-![test](./testResty.png)
+![test](./assets/testResty.png)
 
 
 ## Test RESTy 2
-![result](./result-resty.png)
+![result](./assets/result-resty.png)
 
-![resty](./result2-rest.png)
+![resty](./assets/result2-rest.png)
+
+
+## Test UseReducer RESTY >>>
+![useReducer](./assets/useReducer.png)
 
 

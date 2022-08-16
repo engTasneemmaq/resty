@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useReducer} from 'react';
 
 import './app.scss';
 
@@ -6,25 +6,39 @@ import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import Form from './components/form/form';
 import Results from './components/results/results';
-function App() {
-  const [user, setUser] = useState({
-    data: null,
-    requestParams: {},
-  });
+import reducerData, {addData, removeUrl, emptyAction} from './components/useReducer';
 
+const initialState ={
+  url:[],
+    data:[],
+    count :0
+    }
+
+
+
+function App() {
+  const [state, dispatch] = useReducer(reducerData, initialState );
+
+    const [user, setUser] = useState({
+      data: null,
+      requestParams: {},
+    });
 
   async function callApi(requestParams) {
     if (requestParams.method === "GET") {
       const response = await fetch(requestParams.url);
-      console.log("-------------------------------+ /n", response);
       var data = await response.json();
 
-      console.log(data);
-      
+      data.url=requestParams.url;
+      console.log(data.url ,"++++");
+      dispatch(addData(data));
+
       if (requestParams) {
         setUser({ user, data: data, requestParams: requestParams });
       }
-    } else if(requestParams.method === "POST" ||requestParams.method === "PUT" ||requestParams.method === "DELETE"){
+
+    } 
+    else if(requestParams.method === "POST" ||requestParams.method === "PUT" ||requestParams.method === "DELETE"){
       const data = {
         message: `you cannot Apply >> ${requestParams.method} << method yet  `,
       };
@@ -36,6 +50,10 @@ function App() {
       const data = {
         message: `Please choose a method before sending a request`,
       };
+
+      if (requestParams) {
+        setUser({ user, data: data, requestParams: requestParams });
+      }
     }
   }
 
@@ -47,6 +65,20 @@ function App() {
       </div>
       
       <div data-testid="url">URL: {user.requestParams.url}</div>
+      <h3>Counter OF Your Tested 👩‍💻 👉🏻: {state.count} check data in console</h3>
+      <h4>List of API tested 📑 </h4>
+      <ul>
+        {
+          state.url.map((url,idx)=>{
+            return(
+              <>
+              <li key={idx} onClick={()=> dispatch(removeUrl(idx))}>{url} <span id='delete url'>delete</span></li>
+              </>
+            )
+          })
+        }
+      </ul>
+      <button onClick={() => dispatch(emptyAction())}>Clear All</button>
       <Form handleApiCall={callApi} />
      <Results  data={user.data} />
      
