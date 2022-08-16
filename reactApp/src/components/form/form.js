@@ -11,23 +11,30 @@ url:APIurl,
 method:APImethod,
   }
 
-  const [show ,setShow ]=useState(false)
+const [show ,setShow ]=useState(false)
 const [statusName ,setStatusName]=useState("Click Me !! Show methods")
-  useEffect(()=>{
+const [urlName , setUrlName]= useState("");
+
+useEffect(()=>{
 console.log(API.url);
-  },[APIurl])
-  // let StatusName ="Show methods"
+  },[urlName]);
+ 
  const changeShow =()=>{
 if(show===true){
   setStatusName("Click Me !! Show methods")
   setShow(false)
 }else{
   setStatusName("Click Me !! Hide methods")
-
   setShow(true)
 }
 
  }
+
+ const handleUrlChange =(e)=>{
+  setUrlName(e.target.value);
+  setAPIurl(e.target.value);
+ }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(API);
@@ -36,28 +43,78 @@ if(show===true){
 
   return (
     <>
+
       <form onSubmit={handleSubmit}>
         <label>
+          <span data-testid="span-url" >URL:</span>
+          <br></br>
 
-          <span data-testid='span-url'>URL: </span>
-          <input onChange={(e)=>{setAPIurl(e.target.value)}}name="url"type="text"/>
-          {/* <input onChange={(e)=>{setAPImethod(e.target.value)}} name="method" type="text" /> */}
-
-          {/* <button type="submit">GO!</button> */}
-        <button data-testid='show' onClick={()=>{changeShow()} }id="show">{statusName} </button>
-        {/* {show && (<button data-testid='hide' onClick={(e)=>{setShow(false)} }id="hide">hide methods</button>)} */}
+          <input
+            onChange={(e) => {
+              
+              handleUrlChange(e)}}
+            
+            name="url"
+            type="text"
+            placeholder="INSERT API URL HERE..."
+          />
+    
+          <button
+            data-testid="show"
+            onClick={() => {
+              changeShow();
+            }}
+            id="show"
+          >
+            {statusName}
+          </button>
         </label>
 
-        {show && (<label className="methods">
-        <span>  </span>
+        {show && (
+          <label className="methods">
+            <span> </span>
 
-          <button data-testid='get' onClick={(e)=>{setAPImethod('GET')} }id="get">GET</button>
-          <button data-testid='post' onClick={(e)=>{setAPImethod('POST')} } id="post">POST</button>
-          <button data-testid='put' onClick={(e)=>{setAPImethod('PUT')} } id="put">PUT</button>
-          <button data-testid='delete' onClick={(e)=>{setAPImethod('DELETE')} } id="delete">DELETE</button>
-        </label>)}
+            <button
+              data-testid="get"
+              onClick={(e) => {
+                setAPImethod("GET");
+              }}
+              id="get"
+            >
+              GET
+            </button>
+            <button
+              data-testid="post"
+              onClick={(e) => {
+                setAPImethod("POST");
+              }}
+              id="post"
+            >
+              POST
+            </button>
+            <button
+              data-testid="put"
+              onClick={(e) => {
+                setAPImethod("PUT");
+              }}
+              id="put"
+            >
+              PUT
+            </button>
+            <button
+              data-testid="delete"
+              onClick={(e) => {
+                setAPImethod("DELETE");
+              }}
+              id="delete"
+            >
+              DELETE
+            </button>
+          </label>
+        )}
         
       </form>
+      
     </>
   );
 }
